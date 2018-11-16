@@ -1,0 +1,123 @@
+//系统主题变量
+@baseFontColor: #444444; //字体颜色
+@baseBorderColor: #e0e3e9; //边框颜色
+@baseThemeBgColor: #eaedf1; //主题背景色
+@themeColor: #0090ff; //第一主题色
+@themeFontColor: #ffffff; //主题字体色
+@themeHoverColor: shade(@themeColor, 10%); //主题焦点色
+@baseThemeColor: #007bd9; //第二主题色
+@baseThemeFontColor: #ffffff; //第二主题字体色
+@baseThemeHoverColor: shade(@baseThemeColor, 10%); //第二主题焦点色
+@defaultThemeColor: #f7f7f7; //默认主题色
+@defaultThemeFontColor: @baseFontColor;
+@defaultThemeHoverColor: #dddee1;
+@infoThemeColor: #2db7f5; //信息主题色
+@infoThemeFontColor: #ffffff;
+@infoThemeHoverColor: #2db7f5;
+@successThemeColor: #19be6b; //成功主题色
+@successThemeFontColor: #ffffff;
+@successThemeHoverColor: #19be6b;
+@warningThemeColor: #f90; //警告主题色
+@warningThemeFontColor: #ffffff;
+@warningThemeHoverColor: #f90;
+@errorThemeColor: #ed3f14; //错误主题色
+@errorThemeFontColor: #ffffff;
+@errorThemeHoverColor: #ed3f14;
+//系统字体变量
+@font14: 14px;
+@font12: 12px;
+@font16: 16px;
+//课程地图表格主题颜色
+@tablecolor1Font: #008cff;
+@tablecolor1Bg: #e5f4ff;
+@tablecolor1Bg2: #005bda;
+@tablecolor2Font1: #ff9f19;
+@tablecolor2Bg1: #fff7e5;
+@tablecolor2Bg1_2: #e09109;
+@tablecolor2Font2: #ff5719;
+@tablecolor2Bg2: #ffece5;
+@tablecolor2Bg2_2: #cc3629;
+@tablecolor3Font1: #26bf99;
+@tablecolor3Bg1: #e6faf5;
+@tablecolor3Bg1_2: #1c8c70;
+@tablecolor3Font2: #96cc29;
+@tablecolor3Bg2: #f5fceb;
+@tablecolor3Bg2_2: #678c1c;
+//iview主题色变量，平台内请勿使用此列表中的变量
+@primary-color: @themeColor;
+@link-color: #0090ff;
+@link-hover-color: tint(@link-color, 20%);
+@link-active-color: shade(@link-color, 5%);
+@selected-color: fade(@primary-color, 90%);
+@btn-group-border: shade(@primary-color, 5%);
+@btn-primary-bg: @primary-color;
+@input-hover-border-color: @primary-color;
+@input-focus-border-color: @primary-color;
+@slider-color: tint(@primary-color, 20%);
+@border-color-base: #e0e1e2;
+//以上主题请勿在系统内使用
+//第一主题色按钮
+.ivu-btn-base {
+    background-color: @baseThemeColor;
+    border-color: @baseThemeColor;
+    color: @baseThemeFontColor;
+    &:hover,
+    &:focus {
+        background-color: @baseThemeHoverColor;
+        border-color: @baseThemeHoverColor;
+        color: @baseThemeFontColor;
+    }
+}
+
+//input聚焦
+.inputFocus() {
+    outline: 0;
+    border-color: @baseThemeHoverColor;
+    box-shadow: 0 0 0 2px tint(@baseThemeHoverColor, 20%);
+    transition: border 0.2s ease-in-out, background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+//input主题
+.inputTheme() {
+    outline: 0;
+    border: 1px solid @baseBorderColor;
+    height: 32px;
+    line-height: 30px;
+    padding: 0 10px;
+    border-radius: 4px;
+    &:hover,
+    &:focus {
+        border-color: @themeColor;
+        transition: border 0.2s ease-in-out, background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    &:focus {
+        box-shadow: 0 0 0 2px fadeout(@themeColor, 80%);
+    }
+}
+
+//input主题
+.inputTheme {
+    .inputTheme();
+}
+
+//边框
+.baseBorder() {
+    border: 1px @baseBorderColor solid;
+}
+
+.baseBorder(@direction, @borderWidth: 1px, @color: @baseBorderColor) {
+    border@{direction}: @borderWidth @color solid;
+}
+
+.baseBorderHover() {
+    border: 1px @themeHoverColor solid;
+}
+
+.baseBorderHover(@direction, @borderWidth: 1px, @color: @themeHoverColor) {
+    .baseBorder(@direction, @borderWidth, @color);
+}
+
+//页面最大宽度
+.bodyMaxWidth() {
+    max-width: 1366px;
+}

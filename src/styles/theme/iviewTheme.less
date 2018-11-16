@@ -1,0 +1,294 @@
+@import url('../../../node_modules/iview/src/styles/index.less');
+@import url('./theme.less');
+.ivu-btn-group {
+    font-size: 14px;
+    >.ivu-btn {
+        float: none;
+    }
+    >* {
+        margin-left: 0px;
+        margin-right: 0px;
+        font-size: 14px;
+        vertical-align: middle;
+    }
+    >*.ivu-dropdown button {
+        border-radius: 0px;
+        font-size: 14px;
+    }
+    >*.ivu-dropdown:first-child:last-child button {
+        border-radius: 5px;
+    }
+    >*.ivu-dropdown:first-child:not(:last-child) button {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    >*.ivu-dropdown:last-child:not(:first-child) button {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        margin-left: 0px;
+    }
+    >*.ivu-dropdown:first-child:not(:last-child) .ivu-btn-base {
+        border-right-color: rgba(255, 255, 255, 0.4);
+    }
+    >*.ivu-dropdown+.ivu-btn-base {
+        border-left: 0px;
+    }
+    &:not(.ivu-btn-group-vertical) .ivu-btn-base:first-child:not(:last-child) {
+        border-right-color: rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* 表格焦点样式 */
+
+.ivu-table-row-hover {
+    background-color: #eaeaea;
+}
+
+/*列表边距*/
+
+.ivu-table-cell {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.ivu-select-multiple.SelectOverflow .ivu-select-selection {
+    height: 32px;
+    overflow: hidden;
+}
+
+/*表格高度改为35ps*/
+
+.ivu-table td {
+    height: 35px;
+}
+
+/* 表格没有数据时的默认图片 */
+
+.ivu-table-tip table td span {
+    background: url("../../assets/images/tableDataEmpty.png");
+    padding-bottom: 50px;
+    display: inline-block;
+    padding-top: 160px;
+    color: #aaaaaa;
+    background-repeat: no-repeat;
+    background-position: center 40px;
+    min-width: 200px;
+}
+
+.ivu-tabs-bar {
+    margin-bottom: 0 !important;
+}
+
+.ivu-tooltip,
+.ivu-tooltip-rel {
+    display: block;
+}
+
+.ivu-tooltip-content .ivu-tooltip-inner {
+    white-space: normal;
+}
+
+.ivu-modal .ivu-modal-content {
+    border-radius: 0;
+}
+
+/*在父级具有position属性时，内部下来看会被遮住*/
+
+.ivu-rolling-select {
+    .ivu-select {
+        position: relative;
+    }
+    .ivu-select-dropdown {
+        position: absolute;
+        top: auto !important;
+        ;
+    }
+}
+
+//编辑框右侧的按钮鼠标变成手型
+.ivu-icon-ios-search {
+    cursor: pointer;
+}
+
+.ivu-select-item {
+    overflow: hidden;
+    width: 100%;
+}
+
+/*表格表头*/
+
+table th .ivu-table-cell {
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+    padding-right: 10px;
+    span {
+        margin-top: -2px;
+    }
+    .ivu-table-sort {
+        margin-top: -6px;
+        position: absolute;
+        top: 50%;
+        right: 5px;
+    }
+}
+
+/*面包屑导航字体大小*/
+
+.ivu-breadcrumb {
+    font-size: 14px;
+}
+
+/*修复弹出层中下拉框定位错误*/
+
+.ivu-modal .ivu-form-item-content .ivu-select-dropdown {
+    position: absolute !important;
+    top: 33px !important;
+}
+
+/* 表格render函数操作按钮字体颜色 */
+
+.tableOperateBtnGroup {
+    color: @baseThemeColor;
+    .operateBtn {
+        padding: 0 10px;
+        cursor: pointer;
+        color: @baseThemeColor;
+        &.editBtn {}
+        //编辑
+        &.deleteBtn {}
+        //删除
+        &.enableBtn {}
+        //启用禁用
+        &.btnUpMove {}
+        //上移
+        &.btnDownMove {}
+        //下移
+        &.btnEdit {}
+        &.btnMoveNode {}
+        //迁移
+    }
+    .disableBtn {
+        //禁用
+        padding: 0 10px;
+        color: #aaa;
+        cursor: default;
+    }
+    .usuallyBtn {
+        padding: 0 10px;
+        color: #495060;
+        cursor: pointer;
+    }
+}
+
+.disableFontColor {
+    color: #aaa;
+}
+
+.tableFontBackgroundColor {
+    background-color: @baseThemeColor;
+}
+
+.ivu-loading-bar {
+    .ivu-loading-bar-inner-color-primary {
+        background: shape(@baseThemeColor, 20%);
+    }
+}
+
+//小按钮样式
+.ivu-btn-small {
+    padding: 3px 7px;
+}
+
+//表格公共样式
+.tableInfoBox {
+    position: relative;
+    margin: 10px 0px 0px;
+    .baseBorder();
+    background-color: #fff;
+    .ivu-table-wrapper {
+        border: 0px;
+    }
+    .ivu-table-border th,
+    .ivu-table-border td {
+        border-color: @baseBorderColor;
+    }
+    .ivu-table-border th:last-child,
+    .ivu-table-border td:last-child {
+        border-right: 0px;
+    }
+    .ivu-table:after {
+        width: 0px;
+    }
+    .ivu-table:before {
+        height: 0px;
+    }
+    .ivu-table table {
+        width: calc(~'100% - '0px) !important;
+    }
+    .ivu-table-tip td {
+        border-bottom: 0px;
+        span {
+            width: 100%;
+            padding: 0px;
+            background: url("../../assets/images/tableNoneData.png");
+            display: inline-block;
+            color: #aaaaaa;
+            background-repeat: no-repeat;
+            background-position: center 50%;
+        }
+    }
+    .webPage {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 70px;
+        text-align: center;
+        padding: 18px 0px;
+        background: #fff;
+    }
+    &.hasDataAndPage {
+        padding-bottom: 70px;
+    }
+}
+
+/*-弹窗居中显示-*/
+
+.vertical-center-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .ivu-modal {
+        top: 0;
+    }
+}
+
+/* 分页颜色 */
+
+.ivu-page-item:hover {
+    border-color: @baseThemeColor;
+    a {
+        color: @baseThemeColor;
+    }
+}
+
+.ivu-page-item-active {
+    background-color: @baseThemeColor;
+    border-color: @baseThemeColor;
+    &:hover a {
+        color: #fff;
+    }
+}
+
+//调整系统字体大小
+.ivu-table {
+    font-size: @font14;
+}
+
+.ivu-form .ivu-form-item-label {
+    font-size: @font14;
+}
