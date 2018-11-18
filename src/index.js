@@ -13,7 +13,7 @@ import router from '@/router';
 import store from '@/store';
 import iView from 'iview';
 
-// 导入自定义指令
+// 导入自定义指令 index.js 会使用Vue.use()来注册指令
 import '@/directives';
 
 Vue.config.productionTip = false;
@@ -21,7 +21,7 @@ Vue.config.productionTip = false;
 Vue.use(plugin);
 Vue.use(iView);
 
-new Vue({
+window.app = new Vue({
   el: '#app',
   store,
   router,

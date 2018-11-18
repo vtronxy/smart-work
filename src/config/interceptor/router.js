@@ -1,5 +1,4 @@
 /** @format */
-
 import router from '@/router';
 import store from '@/store';
 import { getToken } from '@/utils/auth'; // getToken from cookie
@@ -17,8 +16,8 @@ export function routerBeforeEachFunc(to, from, next) {
     document.title = to.meta.title;
   }
   if (getToken()) {
-    // determine if there has token是否登录
-    /* has token*/
+    // determine if there has token是否登录 使用本地缓存Cookie
+    /* has token 已经登录了访问login 直接跳转到 dashboard*/
     if (to.path === '/login') {
       next({ path: '/' });
       iView.LoadingBar.finish(); //hack 技巧 if current page is dashboard will not trigger	afterEach hook, so manually handle it
@@ -30,10 +29,10 @@ export function routerBeforeEachFunc(to, from, next) {
           .then(res => {
             // 拉取user_info
             const roles = res.data.roles; // note: roles must be a array! such as: ['editor','develop']
-
-            store.dispatch('GenerateRoutes', { roles }).then(() => {
+            store.dispatch('GenerateRoutes', roles[0]).then(() => {
               // 根据roles权限生成可访问的路由表
               router.addRoutes(store.getters.addRouters); // 动态添加可访问路由表
+              // 下次再进入路由时候 直接走else进入到动态添加的路由中
               next({ ...to, replace: true }); // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
             });
           })
@@ -46,7 +45,7 @@ export function routerBeforeEachFunc(to, from, next) {
             });
           });
       } else {
-        // 没有
+        // 没有动态的改变权限则直接进入
         next();
       }
     }

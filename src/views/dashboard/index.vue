@@ -1,12 +1,25 @@
 <!-- @format -->
 
 <template>
-  <div>我是首页面板</div>
+  <div class="dashboard-home">
+    <Header></Header>
+    <div class="dashboard-content">
+
+    </div>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>
+import Header from '@/components/header';
+import Footer from '@/components/footer';
+
 export default {
   name: 'Dashboard',
+  components: {
+    Header,
+    Footer
+  },
   data() {
     return {};
   }

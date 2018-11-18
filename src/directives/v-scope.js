@@ -48,6 +48,7 @@ var install = {
         return scoped;
       }
     };
+    // 全局注册 自定义指令
     Vue.directive('scoped', {
       inserted: function(el) {
         var scoped = directiveFun.getParentScoped(el, 2);

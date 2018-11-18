@@ -8,6 +8,10 @@ import { CONSOLE_REQUEST_ENABLE, CONSOLE_RESPONSE_ENABLE } from '../index';
 const CancelToken = axios.CancelToken;
 const source = CancelToken.source();
 
+let loadinginstance,
+  loadCount = 0,
+  loadingNameArray = [];
+
 /**
  * 请求成功拦截器
  * @param req 请求参数
@@ -15,6 +19,10 @@ const source = CancelToken.source();
  */
 export function requestSuccessFunc(req) {
   //展示模态对话框
+  loadCount++;
+  let loadingName = `load${loadCount}`;
+  window.loadingView.show(loadingName);
+  loadingNameArray.push(loadingName);
   req.cancelToken = source.token;
   CONSOLE_REQUEST_ENABLE &&
     console.info('requestInterceptorFunc', `url:${req.url}`, req);
@@ -32,6 +40,11 @@ export function requestSuccessFunc(req) {
  * @returns {Promise.<*>}
  */
 export function requestFailFunc(reqError) {
+  // 关闭模态对话框
+  loadCount--;
+  if (!loadCount) {
+    loadingNameArray.forEach(item => window.loadingView.hide(item));
+  }
   // 自定义请求失败逻辑，处理断网，请求发送监控等
   return Promise.reject(reqError);
 }
@@ -42,6 +55,11 @@ export function requestFailFunc(reqError) {
  * @returns {*}
  */
 export function responseSuccessFunc(response) {
+  // 关闭模态对话框
+  loadCount--;
+  if (!loadCount) {
+    loadingNameArray.forEach(item => window.loadingView.hide(item));
+  }
   // 自定义响应成功逻辑，全局拦截接口，根据不同业务做不同处理，响应成功监控等
   CONSOLE_RESPONSE_ENABLE && console.info('responseInterceptorFunc', response);
   if (response && response.data.data) {
@@ -61,6 +79,11 @@ export function responseSuccessFunc(response) {
  * @returns {Promise.<*>}
  */
 export function responseFailFunc(resError) {
+  // 关闭模态对话框
+  loadCount--;
+  if (!loadCount) {
+    loadingNameArray.forEach(item => window.loadingView.hide(item));
+  }
   if (resError.toString().indexOf('Network') > -1) {
     resError.message = '网络连接异常';
     source.cancel(resError.message);

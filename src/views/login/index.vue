@@ -12,7 +12,7 @@
         </a>
         <div class="form-con">
           <Form ref="loginForm" :model="form" :rules="rules" >
-            <FormItem label="登录方式" :label-width="100">
+            <FormItem label="登录方式" :label-width="70">
               <Select v-model="form.loginType">
                 <Option :value="1">域账号</Option>
                 <Option :value="2">非域账号</Option>
@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       form: {
-        loginType: 1, // 默认域账号登录方式
+        loginType: 2, // 默认域账号登录方式 [1 域账号,2 非域账号]
         userName: 'zx_admin',
         password: '1@admin'
       },
@@ -69,18 +69,20 @@ export default {
     handleSubmit() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.$store.commit(
-            'setAvator',
-            'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&fm=27&gp=0.jpg'
-          );
-          if (this.form.userName === 'iview_admin') {
-            Cookies.set('access', 0);
-          } else {
-            Cookies.set('access', 1);
-          }
-          this.$router.push({
-            name: 'home_index'
-          });
+          // 表单验证通过
+          this.$store
+            .dispatch('LoginByUsername', {
+              userName: this.userName,
+              password: this.password
+            })
+            .then(() => {
+              this.$router.push({
+                name: 'dashboard'
+              });
+            })
+            .catch(err => {
+              this.$Message.error('err');
+            });
         }
       });
     }

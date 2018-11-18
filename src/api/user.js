@@ -5,7 +5,7 @@ export default [
     name: 'userList',
     method: 'POST',
     desc: '用户列表',
-    path: '/users',
+    path: '/users', // 一定是以 '/' 开头
     params: {
       pageNo: 1,
       pageSize: 20,

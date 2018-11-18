@@ -24,7 +24,7 @@ export const ROUTER_DEFAULT_CONFIG = {
 // API 默认配置
 export const API_DEFAULT_CONFIG = {
   mockBaseURL: 'http://yapi.demo.qunar.com/mock/12982/flytest/v1', // mock地址
-  mock: true, // 是否开启mock
+  mock: false, // 是否开启mock
   debug: false, // 是否开启debug模式
   sep: '/' // 接口调用分隔符
 };

@@ -15,6 +15,7 @@ import API_CONFIG from '@/api';
 class Api {
   constructor(options) {
     this.api = {};
+    debugger;
     this.apiBuilder(options);
   }
 
@@ -70,10 +71,11 @@ class Api {
       debug && assert(name, `${url} :接口name属性不能为空`);
       debug &&
         assert(url.indexOf('/') === 0, `${url} :接口路径path，首字符应为/`);
-
+      // value可以使用函数调用符号
       Object.defineProperty(this.api, `${apiname}`, {
         value(outerParams, outerOptions) {
           // let _data = _isEmpty(outerParams) ? params : _pick(_assign({}, params, outerParams), Object.keys(params));
+          // 未填的字段 使用默认值
           let _data = _isEmpty(outerParams)
             ? params
             : _assign({}, params, outerParams);
